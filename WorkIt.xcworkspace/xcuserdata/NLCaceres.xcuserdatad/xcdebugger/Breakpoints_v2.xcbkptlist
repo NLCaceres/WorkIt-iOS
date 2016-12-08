@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WorkIt/ProfileViewController.swift"
-            timestampString = "501834212.315459"
+            filePath = "WorkIt/NearbyViewController.swift"
+            timestampString = "502871949.861999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "segmentedControlTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

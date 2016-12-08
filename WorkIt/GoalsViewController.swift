@@ -6,6 +6,9 @@
 //  Copyright © 2016 Nicholas L Caceres. All rights reserved.
 //
 
+// Idea originally to use this VC for achievements page but idea scrapped
+// VC remains in storyboard
+
 import UIKit
 
 class GoalsViewController: UIViewController {

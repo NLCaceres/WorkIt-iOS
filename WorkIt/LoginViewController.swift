@@ -6,6 +6,8 @@
 //  Copyright © 2016 Nicholas L Caceres. All rights reserved.
 //
 
+// Simple loginview that pops up when not logged in
+
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit

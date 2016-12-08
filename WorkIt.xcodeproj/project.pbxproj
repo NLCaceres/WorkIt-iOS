@@ -19,10 +19,13 @@
 		3A125E211DE9645B0082AAC5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A125E201DE9645B0082AAC5 /* FBSDKCoreKit.framework */; };
 		3A125E231DE968430082AAC5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A125E221DE968430082AAC5 /* LoginViewController.swift */; };
 		3A332C311DE574CB009BF666 /* editProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A332C301DE574CB009BF666 /* editProfileViewController.swift */; };
+		3A5331271DF779DA00C47C17 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5331261DF779DA00C47C17 /* NearbyPlaces.swift */; };
+		3A53312C1DF78C1D00C47C17 /* WorkIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A53312A1DF78C1D00C47C17 /* WorkIt.xcdatamodeld */; };
 		3AEEAC7A1DE522E000F6F026 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC791DE522E000F6F026 /* ProfileViewController.swift */; };
 		3AEEAC7C1DE5232600F6F026 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC7B1DE5232600F6F026 /* NearbyViewController.swift */; };
 		3AEEAC7E1DE5234800F6F026 /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC7D1DE5234800F6F026 /* GoalsViewController.swift */; };
 		3AEEAC801DE525A900F6F026 /* CustomExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC7F1DE525A900F6F026 /* CustomExerciseViewController.swift */; };
+		3AFA1CB71DF8C94E0020B2B8 /* Exercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA1CB61DF8C94E0020B2B8 /* Exercises.swift */; };
 		4272A72C16C8732F295AB429 /* Pods_WorkIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389C02E5ADAB419516002B15 /* Pods_WorkIt.framework */; };
 		50524773C61A24922A4C3DB5 /* Pods_WorkItUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A09FC599966EB56D03357A /* Pods_WorkItUITests.framework */; };
 		A559722052B300669207EDBF /* Pods_WorkItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94551FADFFBD105D7EF6ACAA /* Pods_WorkItTests.framework */; };
@@ -66,10 +69,13 @@
 		3A125E221DE968430082AAC5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3A125E241DE974B20082AAC5 /* WorkIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WorkIt.entitlements; sourceTree = "<group>"; };
 		3A332C301DE574CB009BF666 /* editProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editProfileViewController.swift; sourceTree = "<group>"; };
+		3A5331261DF779DA00C47C17 /* NearbyPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
+		3A53312B1DF78C1D00C47C17 /* WorkIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkIt.xcdatamodel; sourceTree = "<group>"; };
 		3AEEAC791DE522E000F6F026 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3AEEAC7B1DE5232600F6F026 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		3AEEAC7D1DE5234800F6F026 /* GoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsViewController.swift; sourceTree = "<group>"; };
 		3AEEAC7F1DE525A900F6F026 /* CustomExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomExerciseViewController.swift; sourceTree = "<group>"; };
+		3AFA1CB61DF8C94E0020B2B8 /* Exercises.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercises.swift; sourceTree = "<group>"; };
 		5AE788B0A96E138DAA2652E0 /* Pods-WorkItUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkItUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkItUITests/Pods-WorkItUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		77B6625BCE4D6AE539B0DABF /* Pods-WorkIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkIt/Pods-WorkIt.release.xcconfig"; sourceTree = "<group>"; };
 		94551FADFFBD105D7EF6ACAA /* Pods_WorkItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +167,9 @@
 				3AEEAC7F1DE525A900F6F026 /* CustomExerciseViewController.swift */,
 				3A332C301DE574CB009BF666 /* editProfileViewController.swift */,
 				3A125E221DE968430082AAC5 /* LoginViewController.swift */,
+				3A5331261DF779DA00C47C17 /* NearbyPlaces.swift */,
+				3AFA1CB61DF8C94E0020B2B8 /* Exercises.swift */,
+				3A53312A1DF78C1D00C47C17 /* WorkIt.xcdatamodeld */,
 			);
 			path = WorkIt;
 			sourceTree = "<group>";
@@ -483,6 +492,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5331271DF779DA00C47C17 /* NearbyPlaces.swift in Sources */,
+				3AFA1CB71DF8C94E0020B2B8 /* Exercises.swift in Sources */,
 				3A125E231DE968430082AAC5 /* LoginViewController.swift in Sources */,
 				3A332C311DE574CB009BF666 /* editProfileViewController.swift in Sources */,
 				3A012CCB1DDEDFB80035329C /* TrackingViewController.swift in Sources */,
@@ -491,6 +502,7 @@
 				3AEEAC7A1DE522E000F6F026 /* ProfileViewController.swift in Sources */,
 				3A012CC91DDEDFB80035329C /* AppDelegate.swift in Sources */,
 				3AEEAC7E1DE5234800F6F026 /* GoalsViewController.swift in Sources */,
+				3A53312C1DF78C1D00C47C17 /* WorkIt.xcdatamodeld in Sources */,
 				3AEEAC801DE525A900F6F026 /* CustomExerciseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,6 +659,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FFF5033E74E5DBED3219FFFC /* Pods-WorkIt.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorkIt/WorkIt.entitlements;
 				DEVELOPMENT_TEAM = PR3C2XAGNG;
@@ -663,6 +676,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 77B6625BCE4D6AE539B0DABF /* Pods-WorkIt.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorkIt/WorkIt.entitlements;
 				DEVELOPMENT_TEAM = PR3C2XAGNG;
@@ -773,6 +787,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3A53312A1DF78C1D00C47C17 /* WorkIt.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A53312B1DF78C1D00C47C17 /* WorkIt.xcdatamodel */,
+			);
+			currentVersion = 3A53312B1DF78C1D00C47C17 /* WorkIt.xcdatamodel */;
+			path = WorkIt.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3A012CBD1DDEDFB80035329C /* Project object */;
 }

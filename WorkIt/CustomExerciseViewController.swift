@@ -6,6 +6,9 @@
 //  Copyright © 2016 Nicholas L Caceres. All rights reserved.
 //
 
+// VC used to gather input for a custom exercise that will be logged in workoutlogVC
+// Originally intended to be used with a completion handler to handle data instead unwind used
+
 import UIKit
 
 typealias customExerciseCompletionHandler = (String?, String?, String?) -> ()
@@ -16,6 +19,10 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var exerciseNameTextField: UITextField!
     @IBOutlet weak var totalSetsTextField: UITextField!
     @IBOutlet weak var totalRepsTextField: UITextField!
+    
+    var exerciseName : String?
+    var totalSets : String?
+    var totalReps : String?
     
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -33,7 +40,7 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
+    func cancelButtonTapped() {
         
         if let ceCH = cExerciseCH {
             ceCH(nil, nil, nil)
@@ -43,11 +50,14 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
         totalRepsTextField.text = nil
         totalSetsTextField.text = nil
         
-        self .dismiss(animated: true, completion: nil)
     }
 
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
+    func saveButtonTapped() {
+        
+        exerciseName = exerciseNameTextField.text!
+        totalSets = totalSetsTextField.text!
+        totalReps = totalRepsTextField.text!
         
         if let ceCH = cExerciseCH {
             ceCH(exerciseNameTextField.text, totalSetsTextField.text, totalRepsTextField.text)
@@ -57,18 +67,11 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
         totalRepsTextField.text = nil
         totalSetsTextField.text = nil
         
-        self .dismiss(animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if let ceCH = cExerciseCH {
-            ceCH(exerciseNameTextField.text, totalSetsTextField.text, totalRepsTextField.text)
-        }
-        
-        exerciseNameTextField.text = nil
-        totalRepsTextField.text = nil
-        totalSetsTextField.text = nil
+        saveButtonTapped()
 
         return true
     }
@@ -89,14 +92,19 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "cancelButtonUnwind") {
+            cancelButtonTapped()
+        } else {
+            saveButtonTapped()
+        }
+        
     }
-    */
 
 }
