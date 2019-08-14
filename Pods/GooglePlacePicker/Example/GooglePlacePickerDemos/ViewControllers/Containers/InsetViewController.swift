@@ -15,7 +15,6 @@
 
 import UIKit
 
-@available(iOS 8.0, *)
 /// A container view controller which displays its child controller with an optional inset and
 /// background view controller. The inset and background controller are only shown if there is
 /// enough space for the child controller to fit after being inset.
@@ -24,7 +23,6 @@ class InsetViewController: BaseContainerViewController {
   private let backgroundViewController: UIViewController
   private let contentViewController: UIViewController
   private(set) var hasMargin = false
-  private var parallax: UIMotionEffectGroup!
 
   // MARK: - Init/Deinit
 
@@ -50,38 +48,33 @@ class InsetViewController: BaseContainerViewController {
     super.viewDidLoad()
 
     // Add the background and the content controllers.
-
+#if swift(>=4.2)
+    addChild(backgroundViewController)
+#else
     addChildViewController(backgroundViewController)
+#endif
     backgroundViewController.view.frame = view.bounds
     backgroundViewController.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     view.addSubview(backgroundViewController.view)
+#if swift(>=4.2)
+    backgroundViewController.didMove(toParent: self)
+#else
     backgroundViewController.didMove(toParentViewController: self)
+#endif
 
+#if swift(>=4.2)
+    addChild(contentViewController)
+#else
     addChildViewController(contentViewController)
+#endif
     view.addSubview(contentViewController.view)
     contentViewController.view.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin,
                                                    .flexibleRightMargin, .flexibleBottomMargin]
+#if swift(>=4.2)
+    contentViewController.didMove(toParent: self)
+#else
     contentViewController.didMove(toParentViewController: self)
-
-    initializeParallax()
-  }
-
-  private func initializeParallax() {
-    // Set vertical effect
-    let verticalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y",
-                                                           type: .tiltAlongVerticalAxis)
-    verticalMotionEffect.minimumRelativeValue = -30
-    verticalMotionEffect.maximumRelativeValue = 30
-
-    // Set horizontal effect
-    let horizontalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x",
-                                                             type: .tiltAlongHorizontalAxis)
-    horizontalMotionEffect.minimumRelativeValue = -30
-    horizontalMotionEffect.maximumRelativeValue = 30
-
-    // Create group to combine both
-    parallax = UIMotionEffectGroup()
-    parallax.motionEffects = [horizontalMotionEffect, verticalMotionEffect]
+#endif
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +106,15 @@ class InsetViewController: BaseContainerViewController {
   }
 
   /// Pass through to the appropriate child view controller for status bar appearance.
+#if swift(>=4.2)
+  public override var childForStatusBarStyle: UIViewController? {
+    if contentViewController.view.frame == view.bounds {
+      return contentViewController
+    } else {
+      return backgroundViewController
+    }
+  }
+#else
   override var childViewControllerForStatusBarStyle: UIViewController? {
     if contentViewController.view.frame == view.bounds {
       return contentViewController
@@ -120,8 +122,18 @@ class InsetViewController: BaseContainerViewController {
       return backgroundViewController
     }
   }
+#endif
 
   /// Pass through to the appropriate child view controller for status bar appearance.
+#if swift(>=4.2)
+  public override var childForStatusBarHidden: UIViewController? {
+    if contentViewController.view.frame == view.bounds {
+      return contentViewController
+    } else {
+      return backgroundViewController
+    }
+  }
+#else
   override var childViewControllerForStatusBarHidden: UIViewController? {
     if contentViewController.view.frame == view.bounds {
       return contentViewController
@@ -129,6 +141,7 @@ class InsetViewController: BaseContainerViewController {
       return backgroundViewController
     }
   }
+#endif
 
   /// Listen for changes in our children's preferred content size.
   override func preferredContentSizeDidChange(forChildContentContainer
@@ -179,13 +192,6 @@ class InsetViewController: BaseContainerViewController {
       if backgroundWasHidden != backgroundWillBeHidden {
         // Notify the background controller that the transition in/out has finished.
         self.backgroundViewController.endAppearanceTransition()
-      }
-
-      // Add/remove the parallax effect.
-      if backgroundWillBeHidden {
-        self.contentViewController.view.removeMotionEffect(self.parallax)
-      } else {
-        self.contentViewController.view.addMotionEffect(self.parallax)
       }
 
       completion()
@@ -239,10 +245,8 @@ class InsetViewController: BaseContainerViewController {
   }
 }
 
-@available(iOS 8.0, *)
 internal var InsetViewControllerAssociatedObjectHandle: UInt8 = 0
 
-@available(iOS 8.0, *)
 extension UIViewController {
   /// Retrieve the parent |InsetViewController| of |self| if one is present.
   var insetViewController: InsetViewController? {

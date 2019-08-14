@@ -15,12 +15,9 @@
 		3A012CDE1DDEDFB80035329C /* WorkItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A012CDD1DDEDFB80035329C /* WorkItTests.swift */; };
 		3A012CE91DDEDFB80035329C /* WorkItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A012CE81DDEDFB80035329C /* WorkItUITests.swift */; };
 		3A012CF71DE0DCA60035329C /* WorkoutLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A012CF61DE0DCA60035329C /* WorkoutLogViewController.swift */; };
-		3A125E1F1DE9644C0082AAC5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A125E1E1DE9644C0082AAC5 /* FBSDKLoginKit.framework */; };
-		3A125E211DE9645B0082AAC5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A125E201DE9645B0082AAC5 /* FBSDKCoreKit.framework */; };
 		3A125E231DE968430082AAC5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A125E221DE968430082AAC5 /* LoginViewController.swift */; };
-		3A332C311DE574CB009BF666 /* editProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A332C301DE574CB009BF666 /* editProfileViewController.swift */; };
+		3A332C311DE574CB009BF666 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A332C301DE574CB009BF666 /* EditProfileViewController.swift */; };
 		3A5331271DF779DA00C47C17 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5331261DF779DA00C47C17 /* NearbyPlaces.swift */; };
-		3A53312C1DF78C1D00C47C17 /* WorkIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A53312A1DF78C1D00C47C17 /* WorkIt.xcdatamodeld */; };
 		3AEEAC7A1DE522E000F6F026 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC791DE522E000F6F026 /* ProfileViewController.swift */; };
 		3AEEAC7C1DE5232600F6F026 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC7B1DE5232600F6F026 /* NearbyViewController.swift */; };
 		3AEEAC7E1DE5234800F6F026 /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEAC7D1DE5234800F6F026 /* GoalsViewController.swift */; };
@@ -29,6 +26,8 @@
 		4272A72C16C8732F295AB429 /* Pods_WorkIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389C02E5ADAB419516002B15 /* Pods_WorkIt.framework */; };
 		50524773C61A24922A4C3DB5 /* Pods_WorkItUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A09FC599966EB56D03357A /* Pods_WorkItUITests.framework */; };
 		A559722052B300669207EDBF /* Pods_WorkItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94551FADFFBD105D7EF6ACAA /* Pods_WorkItTests.framework */; };
+		BF9F42DF22D5B8E40062A3BE /* WorkIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF9F42DD22D5B8E40062A3BE /* WorkIt.xcdatamodeld */; };
+		BFB2688622D8129900C6806E /* GoalsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB2688522D8129900C6806E /* GoalsCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,9 +67,8 @@
 		3A125E201DE9645B0082AAC5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3A125E221DE968430082AAC5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3A125E241DE974B20082AAC5 /* WorkIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WorkIt.entitlements; sourceTree = "<group>"; };
-		3A332C301DE574CB009BF666 /* editProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editProfileViewController.swift; sourceTree = "<group>"; };
+		3A332C301DE574CB009BF666 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		3A5331261DF779DA00C47C17 /* NearbyPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
-		3A53312B1DF78C1D00C47C17 /* WorkIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkIt.xcdatamodel; sourceTree = "<group>"; };
 		3AEEAC791DE522E000F6F026 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3AEEAC7B1DE5232600F6F026 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		3AEEAC7D1DE5234800F6F026 /* GoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +77,9 @@
 		5AE788B0A96E138DAA2652E0 /* Pods-WorkItUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkItUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkItUITests/Pods-WorkItUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		77B6625BCE4D6AE539B0DABF /* Pods-WorkIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkIt/Pods-WorkIt.release.xcconfig"; sourceTree = "<group>"; };
 		94551FADFFBD105D7EF6ACAA /* Pods_WorkItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF9F42DE22D5B8E40062A3BE /* WorkIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkIt.xcdatamodel; sourceTree = "<group>"; };
+		BFB2688522D8129900C6806E /* GoalsCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsCollectionReusableView.swift; sourceTree = "<group>"; };
+		BFB2688722D87A8300C6806E /* Pasadena.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pasadena.gpx; sourceTree = "<group>"; };
 		E1E2E0C78BA7D7C2C838F22F /* Pods-WorkItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkItUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkItUITests/Pods-WorkItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E9AC6E227E875F350040F2AC /* Pods-WorkItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkItTests/Pods-WorkItTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4A09FC599966EB56D03357A /* Pods_WorkItUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkItUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,8 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A125E1F1DE9644C0082AAC5 /* FBSDKLoginKit.framework in Frameworks */,
-				3A125E211DE9645B0082AAC5 /* FBSDKCoreKit.framework in Frameworks */,
 				4272A72C16C8732F295AB429 /* Pods_WorkIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,11 +164,13 @@
 				3AEEAC7B1DE5232600F6F026 /* NearbyViewController.swift */,
 				3AEEAC7D1DE5234800F6F026 /* GoalsViewController.swift */,
 				3AEEAC7F1DE525A900F6F026 /* CustomExerciseViewController.swift */,
-				3A332C301DE574CB009BF666 /* editProfileViewController.swift */,
+				3A332C301DE574CB009BF666 /* EditProfileViewController.swift */,
 				3A125E221DE968430082AAC5 /* LoginViewController.swift */,
 				3A5331261DF779DA00C47C17 /* NearbyPlaces.swift */,
 				3AFA1CB61DF8C94E0020B2B8 /* Exercises.swift */,
-				3A53312A1DF78C1D00C47C17 /* WorkIt.xcdatamodeld */,
+				BF9F42DD22D5B8E40062A3BE /* WorkIt.xcdatamodeld */,
+				BFB2688522D8129900C6806E /* GoalsCollectionReusableView.swift */,
+				BFB2688722D87A8300C6806E /* Pasadena.gpx */,
 			);
 			path = WorkIt;
 			sourceTree = "<group>";
@@ -236,8 +237,6 @@
 				3A012CD51DDEDFB80035329C /* Sources */,
 				3A012CD61DDEDFB80035329C /* Frameworks */,
 				3A012CD71DDEDFB80035329C /* Resources */,
-				BF1E663C371E19B8F6315D9E /* [CP] Embed Pods Frameworks */,
-				8BB20080C83B386D05D84CCC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,8 +256,6 @@
 				3A012CE01DDEDFB80035329C /* Sources */,
 				3A012CE11DDEDFB80035329C /* Frameworks */,
 				3A012CE21DDEDFB80035329C /* Resources */,
-				C78DB357D2EC32F7EC192873 /* [CP] Embed Pods Frameworks */,
-				56B992D8C0238863167C993C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,7 +274,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Nicholas L Caceres";
 				TargetAttributes = {
 					3A012CC41DDEDFB80035329C = {
@@ -304,7 +301,7 @@
 			};
 			buildConfigurationList = 3A012CC01DDEDFB80035329C /* Build configuration list for PBXProject "WorkIt" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -356,13 +353,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WorkItTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		518F3693EE4714C3D25E30B6 /* [CP] Check Pods Manifest.lock */ = {
@@ -371,28 +371,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WorkItUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		56B992D8C0238863167C993C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkItUITests/Pods-WorkItUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		86FE98FA610A2A13EF90E837 /* [CP] Copy Pods Resources */ = {
@@ -401,43 +389,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorkIt/Pods-WorkIt-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkIt/Pods-WorkIt-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8BB20080C83B386D05D84CCC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkItTests/Pods-WorkItTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF1E663C371E19B8F6315D9E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkItTests/Pods-WorkItTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkIt/Pods-WorkIt-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C1870E227FAF06EA9F874156 /* [CP] Check Pods Manifest.lock */ = {
@@ -446,13 +413,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WorkIt-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C403F0A44BC0225F23DBAA1C /* [CP] Embed Pods Frameworks */ = {
@@ -461,28 +431,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorkIt/Pods-WorkIt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkIt/Pods-WorkIt-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C78DB357D2EC32F7EC192873 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkItUITests/Pods-WorkItUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkIt/Pods-WorkIt-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -495,14 +457,15 @@
 				3A5331271DF779DA00C47C17 /* NearbyPlaces.swift in Sources */,
 				3AFA1CB71DF8C94E0020B2B8 /* Exercises.swift in Sources */,
 				3A125E231DE968430082AAC5 /* LoginViewController.swift in Sources */,
-				3A332C311DE574CB009BF666 /* editProfileViewController.swift in Sources */,
+				3A332C311DE574CB009BF666 /* EditProfileViewController.swift in Sources */,
 				3A012CCB1DDEDFB80035329C /* TrackingViewController.swift in Sources */,
 				3A012CF71DE0DCA60035329C /* WorkoutLogViewController.swift in Sources */,
 				3AEEAC7C1DE5232600F6F026 /* NearbyViewController.swift in Sources */,
 				3AEEAC7A1DE522E000F6F026 /* ProfileViewController.swift in Sources */,
 				3A012CC91DDEDFB80035329C /* AppDelegate.swift in Sources */,
+				BFB2688622D8129900C6806E /* GoalsCollectionReusableView.swift in Sources */,
 				3AEEAC7E1DE5234800F6F026 /* GoalsViewController.swift in Sources */,
-				3A53312C1DF78C1D00C47C17 /* WorkIt.xcdatamodeld in Sources */,
+				BF9F42DF22D5B8E40062A3BE /* WorkIt.xcdatamodeld in Sources */,
 				3AEEAC801DE525A900F6F026 /* CustomExerciseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,20 +525,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -606,6 +578,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -614,20 +587,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -650,6 +632,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -664,11 +647,11 @@
 				CODE_SIGN_ENTITLEMENTS = WorkIt/WorkIt.entitlements;
 				DEVELOPMENT_TEAM = PR3C2XAGNG;
 				INFOPLIST_FILE = WorkIt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.edu.WorkIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -681,11 +664,11 @@
 				CODE_SIGN_ENTITLEMENTS = WorkIt/WorkIt.entitlements;
 				DEVELOPMENT_TEAM = PR3C2XAGNG;
 				INFOPLIST_FILE = WorkIt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.edu.WorkIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -699,7 +682,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.edu.WorkItTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkIt.app/WorkIt";
 			};
 			name = Debug;
@@ -714,7 +697,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.edu.WorkItTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkIt.app/WorkIt";
 			};
 			name = Release;
@@ -728,7 +711,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.edu.WorkItUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = WorkIt;
 			};
 			name = Debug;
@@ -742,7 +725,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.edu.WorkItUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = WorkIt;
 			};
 			name = Release;
@@ -789,12 +772,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		3A53312A1DF78C1D00C47C17 /* WorkIt.xcdatamodeld */ = {
+		BF9F42DD22D5B8E40062A3BE /* WorkIt.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3A53312B1DF78C1D00C47C17 /* WorkIt.xcdatamodel */,
+				BF9F42DE22D5B8E40062A3BE /* WorkIt.xcdatamodel */,
 			);
-			currentVersion = 3A53312B1DF78C1D00C47C17 /* WorkIt.xcdatamodel */;
+			currentVersion = BF9F42DE22D5B8E40062A3BE /* WorkIt.xcdatamodel */;
 			path = WorkIt.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

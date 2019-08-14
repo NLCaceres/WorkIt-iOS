@@ -9,40 +9,94 @@
 import UIKit
 import GooglePlaces
 import GoogleMaps
-import FBSDKCoreKit
+import GoogleSignIn
+//import FBSDKCoreKit
 import CoreData
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    var tabBar: UITabBarController?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        // FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        GIDSignIn.sharedInstance().clientID = "998193705224-lvrnlsm43vf2sgjf48nihv5tvk3o612p.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
         
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyDssHkfj5_ozOzieJMvhUsC3zaCVJ0V8c4")
         GMSPlacesClient.provideAPIKey("AIzaSyDssHkfj5_ozOzieJMvhUsC3zaCVJ0V8c4")
-        let tabBar : UITabBarController = self.window?.rootViewController as! UITabBarController
-        tabBar.selectedIndex = 2;
+        
+        configureTabBar()
+        configureNavBar()
         
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        let handled : Bool = FBSDKApplicationDelegate.sharedInstance().application(
-            app,
-            open: url as URL!,
-            sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
-            annotation: options[UIApplicationOpenURLOptionsKey.annotation]
-        )
-        
-        return handled
-        
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url as URL?,
+                                                 sourceApplication: options[.sourceApplication] as? String,
+                                                 annotation: options[.annotation])
     }
+//    // iOS 8 and lower
+//    func application(application: UIApplication,
+//                     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+//        var options: [String: AnyObject] = [UIApplication.OpenURLOptionsKey: sourceApplication,
+//                                            UIApplication.OpenURLOptionsKey: annotation]
+//        return GIDSignIn.sharedInstance().handleURL(url,
+//                                                    sourceApplication: sourceApplication,
+//                                                    annotation: annotation)
+//    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBar = self.window?.rootViewController as! UITabBarController
+            tabBar.selectedViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+    }
+    
+    func configureTabBar() {
+        tabBar = self.window?.rootViewController as? UITabBarController
+        if let tabBar = tabBar {
+            tabBar.selectedIndex = 2
+        }
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(red: 0x99, green: 0x00, blue: 0x00, alpha: 0xFF)], for: .selected)
+    }
+    func configureNavBar() {
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.barTintColor = UIColor(red:0.11, green:0.15, blue:0.45, alpha:1.0) // Loyola Blue
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]
+    }
+    
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        let handled : Bool = FBSDKApplicationDelegate.sharedInstance().application(
+//            app,
+//            open: url, // as URL
+//            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String,
+//            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+//        )
+//        
+//        return handled
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -68,7 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Core Data stack
-    
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -97,7 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     // MARK: - Core Data Saving support
-    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

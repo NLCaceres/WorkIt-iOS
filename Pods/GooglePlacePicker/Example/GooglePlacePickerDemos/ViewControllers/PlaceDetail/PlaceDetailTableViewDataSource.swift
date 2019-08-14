@@ -44,15 +44,6 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
   private let noneText = NSLocalizedString("PlaceDetails.MissingValue",
                                            comment: "The value of a property which is missing")
   private let tableView: UITableView
-  // Additional margin padding to use during layout. This is 0 for iOS versions 8.0 and above, while
-  // on iOS 7 this needs to be hardcoded to 8 to ensure the correct layout.
-  private let additionalMarginPadding: CGFloat = {
-    if #available(iOS 8.0, *) {
-      return 0
-    } else {
-      return 8
-    }
-  }()
 
   var compactHeader = false {
     didSet {
@@ -94,7 +85,12 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
     // Configure some other properties.
     tableView.estimatedRowHeight = 44
     tableView.estimatedSectionHeaderHeight = 44
+
+#if swift(>=4.2)
+    tableView.sectionHeaderHeight = UITableView.automaticDimension
+#else
     tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+#endif
   }
 
   // MARK: - Public Methods
@@ -141,7 +137,7 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
 
       switch propertyType {
       case .placeID:
-        cell.propertyValue.text = place.placeID
+        cell.propertyValue.text = place.placeID ?? noneText
       case .coordinate:
         let format = NSLocalizedString("Places.Property.Coordinate.Format",
                                        comment: "The format string for latitude, longitude")
@@ -167,7 +163,11 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
       case .priceLevel:
         cell.propertyValue.text = text(for: place.priceLevel)
       case .types:
-        cell.propertyValue.text = place.types.joined(separator: ", ")
+        if let placeTypes = place.types {
+          cell.propertyValue.text = placeTypes.joined(separator: ", ")
+        } else {
+          cell.propertyValue.text = noneText
+        }
       case .attribution:
         if let attributions = place.attributions {
           cell.propertyValue.attributedText = attributions
@@ -183,7 +183,7 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return place.name
+    return place.name ?? "unknown"
   }
 
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -201,22 +201,11 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
       return compactHeader ? 0 : 20
     }
     else {
-      if #available(iOS 8.0, *) {
-        return UITableViewAutomaticDimension
-      } else {
-        // This means that on iOS 7 we only get the first line of text.
-        return 55
-      }
-    }
-  }
-
-  /// Only needed for iOS 7, explodes if this is not provided.
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if #available(iOS 8.0, *) {
+#if swift(>=4.2)
+      return UITableView.automaticDimension
+#else
       return UITableViewAutomaticDimension
-    } else {
-      // This means that on iOS 7 we only get the first line of text.
-      return 65
+#endif
     }
   }
 
@@ -271,10 +260,10 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
     if offsetNavigationTitle {
       // If so offset it by at most 36 pixels, relative to how much we've scrolled past 160px.
       let offset = max(0, min(36, tableView.contentOffset.y - 160))
-      header.leadingConstraint.constant = offset + additionalMarginPadding
+      header.leadingConstraint.constant = offset
     } else {
       // Otherwise don't offset.
-      header.leadingConstraint.constant = additionalMarginPadding
+      header.leadingConstraint.constant = 0
     }
 
     // Update the compact status.

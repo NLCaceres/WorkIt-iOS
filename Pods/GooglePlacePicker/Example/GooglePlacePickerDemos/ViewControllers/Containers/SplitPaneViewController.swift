@@ -78,7 +78,6 @@ class SplitPaneViewController: BaseContainerViewController {
     transition(to: state, animated: false) {}
   }
 
-  @available(iOS 8.0, *)
   /// Listen to size changes and trigger the appropriate animations.
   override func viewWillTransition(to size: CGSize,
                                    with coordinator: UIViewControllerTransitionCoordinator) {
@@ -87,25 +86,27 @@ class SplitPaneViewController: BaseContainerViewController {
     super.viewWillTransition(to: size, with: coordinator)
   }
 
-  /// Only needed for iOS 7 support.
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-
-    guard #available(iOS 8.0, *) else {
-      transition(to: state, overrideSize: view.bounds.size) {}
-      return
-    }
-  }
-
   /// Pass through to the child view controller for status bar appearance.
+#if swift(>=4.2)
+  public override var childForStatusBarStyle: UIViewController? {
+    return leftController
+  }
+#else
   override var childViewControllerForStatusBarStyle: UIViewController? {
     return leftController
   }
+#endif
 
   /// Pass through to the child view controller for status bar appearance.
+#if swift(>=4.2)
+  public override var childForStatusBarHidden: UIViewController? {
+    return leftController
+  }
+#else
   override var childViewControllerForStatusBarHidden: UIViewController? {
     return leftController
   }
+#endif
 
   /// Listen to changes in the preferred content size of our children.
   override func preferredContentSizeDidChange(
@@ -182,17 +183,12 @@ class SplitPaneViewController: BaseContainerViewController {
   /// Access the current state of the UI.
   private var state: State {
     get {
-      if #available(iOS 8.0, *) {
-        let hasMargin = insetViewController?.hasMargin ?? false
-        return SplitPaneViewController.state(for: actualTraitCollection,
-                                             hasMargin: hasMargin)
-      } else {
-        return .fullScreen
-      }
+      let hasMargin = insetViewController?.hasMargin ?? false
+      return SplitPaneViewController.state(for: actualTraitCollection,
+                                           hasMargin: hasMargin)
     }
   }
 
-  @available(iOS 8.0, *)
   /// Determine the expected UI state for the given parameters.
   ///
   /// - parameter traitCollection The trait collection the UI will be displayed for.
@@ -408,23 +404,39 @@ class SplitPaneViewController: BaseContainerViewController {
                              self,
                              .OBJC_ASSOCIATION_ASSIGN)
 
+#if swift(>=4.2)
+    self.addChild(viewController)
+#else
     self.addChildViewController(viewController)
+#endif
   }
 
   /// Finish up adding a view controller.
   private func endAdd(_ viewController: UIViewController) {
+#if swift(>=4.2)
+    viewController.didMove(toParent: self)
+#else
     viewController.didMove(toParentViewController: self)
-  }
+#endif
+    }
 
   /// Start removing a child view controller.
   private func startRemove(_ viewController: UIViewController) {
-    viewController.willMove(toParentViewController: self)
+#if swift(>=4.2)
+    viewController.willMove(toParent: self)
+#else
+    viewController.didMove(toParentViewController: self)
+#endif
   }
 
   /// Finish up removing a child view controller. Remove it as a child and reset the
   /// |UIViewController.splitPaneViewController| property.
   private func endRemove(_ viewController: UIViewController) {
+#if swift(>=4.2)
+    viewController.removeFromParent()
+#else
     viewController.removeFromParentViewController()
+#endif
 
     // Check to see if it hasn't changed before nilling it out.
     if viewController.splitPaneViewController == self {

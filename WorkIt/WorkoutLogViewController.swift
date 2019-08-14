@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
+import GoogleSignIn
+//import FBSDKCoreKit
+//import FBSDKLoginKit
 import CoreData
 
 class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -17,26 +18,19 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
     var exerciseList: [Exercises] = [Exercises(name: "Dips",targetMuscle: "Tricep"), Exercises(name: "Bench Press",targetMuscle: "Chest"), Exercises(name: "Squat", targetMuscle: "Legs"), Exercises(name: "Deadlift",targetMuscle: "Back")]
     var customExercises: [NSManagedObject] = []
     var customExerciseTotalList: [String:[NSManagedObject]] = [:]
+    
     var dates: [String] = []
+    var tableType : Int?
     
-    // Used to toggle between viewing workouts done based on date they were done on and suggestions for users to see
+    // Toggle between log of workouts and workout suggestions
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
-    var tableType : Int!
-    
     @IBAction func segmentedControlTapped(_ sender: Any) {
-        
-        
-        // Control data flow whether its custom user input workouts or preloaded ones
-        // 0 corresponds to workout log
-        // 1 is preloaded workout suggestions
+        // 0 is WorkoutLog, 1 is PreloadedWorkoutSuggestions
         tableType = segmentedControl.selectedSegmentIndex
         if (tableType == 0) {
             // Show workout log
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            
             let managedContext = appDelegate?.persistentContainer.viewContext
-            
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CustomExercise")
             
             do {
@@ -46,13 +40,10 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
             }
-        }
-        
-        else {
+        } else {
             // Show workout suggestions
             tableView.reloadData()
         }
-        
     }
     
     override func viewDidLoad() {
@@ -61,63 +52,60 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
         tableType = 0
         tableView.reloadData()
         
+        GIDSignIn.sharedInstance().signInSilently() // Auto sign BehindTheScenes if possible
+        
+        // TODO(developer) Configure the sign-in button look/feel
+        // ...
         
         // This bit of code simply used to reset coredata for testing purposes
-        /*
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        
+        /* let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomExercise")
         
         // Configure Fetch Request
         fetchRequest.includesPropertyValues = false
-        
         do {
             let items = try managedContext?.fetch(fetchRequest) as! [NSManagedObject]
-            
             for item in items {
                 managedContext?.delete(item)
             }
             
-            // Save Changes
             try managedContext?.save()
             
         } catch {
             // Error Handling
             // ...
-        }
-        */
+        } */
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        
         let managedContext = appDelegate?.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CustomExercise")
-        
         do {
             customExercises = try managedContext!.fetch(fetchRequest)
             print(customExercises.count)
             if (customExercises.isEmpty == false) {
-
                 for (index, customExercise) in customExercises.enumerated() {
-                    let dateString :String! = customExercise.value(forKey: "date") as! String!
-                    if (dates.contains(dateString) == false ) {
-                        dates.append(dateString)
+                    let dateString = customExercise.value(forKey: "date") as? String
+                    guard let dateStr = dateString else {
+                        print("Issue with date string")
+                        continue
                     }
-                    var dateSavedExerciseList = customExerciseTotalList[dateString!]
+                    if (dates.contains(dateStr) == false ) {
+                        dates.append(dateStr)
+                    }
+                    var dateSavedExerciseList = customExerciseTotalList[dateStr]
                     if (dateSavedExerciseList == nil) {
                         dateSavedExerciseList = [customExercise]
                         print(dateSavedExerciseList!)
-                        customExerciseTotalList[dateString!] = dateSavedExerciseList
-                        print(customExerciseTotalList[dateString!]!)
+                        customExerciseTotalList[dateStr] = dateSavedExerciseList
+                        print(customExerciseTotalList[dateStr]!)
                     }
                     else {
-                        customExerciseTotalList[dateString!]?.append(customExercise)
+                        customExerciseTotalList[dateStr]?.append(customExercise)
                     }
                     tableView.reloadData()
                     
-                    let sectionIndex = dates.index(of: dateString)
+                    let sectionIndex = dates.firstIndex(of: dateStr)
                     print("\(sectionIndex!) this is section number")
                     print(index)
                     
@@ -153,18 +141,22 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let isLoggedIn = GIDSignIn.sharedInstance()?.hasAuthInKeychain()
+        if (!isLoggedIn!) { // Not Logged in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyboard.instantiateViewController(withIdentifier :"LoginVC")
+            self.present(loginVC, animated: false, completion: nil)
+            return
+        }
+        // If we reached this part then let's reload table for new data
         tableView.reloadData()
         
-        // Trying to access coredata to automatically load up previous user input workout log
-        /*
+        /* Trying to access coredata to automatically load up previous user input workout log
         if (tableType == 0) {
-            
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            
             let managedContext = appDelegate?.persistentContainer.viewContext
-            
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CustomExercise")
-            
             do {
                 customExercises = try managedContext!.fetch(fetchRequest)
                 if (customExercises.isEmpty == false) {
@@ -180,29 +172,13 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                     tableView.reloadData()
                 }
-                
                 print("\(customExercises.count) hello")
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
             }
         } else {
             
-        }
-        */
-    }
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if(FBSDKAccessToken.current() == nil){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginVC = storyboard.instantiateViewController(withIdentifier :"LoginVC")
-            self.present(loginVC, animated: false, completion: nil)
-            return
-        }
-        
-        
+        } */
     }
 
     override func didReceiveMemoryWarning() {
@@ -214,37 +190,27 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
         if (tableType == 0) {
             return dates[section]
         }
-        else {
-            return ""
-        }
+        return "" // Fallthrough else condition
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         if (tableType == 0) {
             return dates.count
-        } else {
-            return 1
         }
-        
+        return 1 // Fallthrough
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if (tableType == 0) {
-            
             if (dates.isEmpty == false && customExerciseTotalList.isEmpty == false) {
                 let sectionTitle = dates[section]
                 let dateSavedExerciseList = customExerciseTotalList[sectionTitle]
                 return dateSavedExerciseList!.count
-            }
-            else {
+            } else {
                 return 1
             }
-        } else {
-            return exerciseList.count
         }
-        
+        return exerciseList.count // Load old content
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -253,20 +219,17 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let cellId = "cellId1"
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: cellId)
+            cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
         }
         
         if (tableType == 0) {
-            
             // Make sure array and dictionary all set to be loaded up with coredata return values
             if (dates.isEmpty == false && customExerciseTotalList.isEmpty == false) {
                 let sectionTitle = dates[indexPath.section]
                 let dateSavedExerciseList = customExerciseTotalList[sectionTitle]
                 let customExercise = dateSavedExerciseList?[indexPath.row]
-                
                 let totalReps = customExercise?.value(forKey: "totalReps")
                 let totalSets = customExercise?.value(forKey: "totalSets")
                 let exerciseName = customExercise?.value(forKey: "name")
@@ -275,50 +238,28 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell?.detailTextLabel?.text = "Sets: \(totalSets!) Reps: \(totalReps!)"
                 
                 print("\(customExercises.count) setting up a cell for you ")
-                
             }
-            else {
-                
-            }
-            
-            /*
-            let customExercise = customExercises[indexPath.row]
-            
-            let totalReps = customExercise.value(forKey: "totalReps")
-            let totalSets = customExercise.value(forKey: "totalSets")
-
-            cell?.textLabel?.text = customExercise.value(forKey: "name") as! String?
-            cell?.detailTextLabel?.text = "Sets: \(totalSets) Reps: \(totalReps)"
-             */
-        }
-        
-        else {
+        } else {
             cell?.textLabel?.text = exerciseList[(indexPath as IndexPath).row].name
             cell?.detailTextLabel?.text = exerciseList[(indexPath as IndexPath).row].targetMuscle
         }
         
-        // cell?.textLabel?.text = CCList[(indexPath as IndexPath).row].cardNickName
-        
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
+            // Properly set up delete handling between custom workouts
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
-            
-        tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
     // MARK: - Navigation
-    
     @IBAction func cancelButtonUnwind(segue: UIStoryboardSegue) {
         
     }
     @IBAction func saveButtonUnwind(segue: UIStoryboardSegue) {
-        
         // function to unwind segue all the data from user input VC
-        
         if let customExerciseVC = segue.source as? CustomExerciseViewController {
             if let exerciseName = customExerciseVC.exerciseName {
                 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -351,7 +292,6 @@ class WorkoutLogViewController: UIViewController, UITableViewDelegate, UITableVi
                         else if (index == dates.count - 1 && dateString != date) {
                             dates.append(dateString)
                         }
-                        
                     }
                 }
         

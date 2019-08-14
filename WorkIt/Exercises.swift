@@ -10,15 +10,16 @@
 
 import UIKit
 
-class Exercises {
+struct Exercises {
  
     // Properties
-    var name : String
-    var targetMuscle : String
+    var name : String?
+    var targetMuscle : String? // Maybe make into array (for set of muscles worked)
     
-    init(name: String, targetMuscle: String) {
+    init(name: String? = nil, targetMuscle: String? = nil) {
         self.name = name
         self.targetMuscle = targetMuscle
     }
     
 }
+

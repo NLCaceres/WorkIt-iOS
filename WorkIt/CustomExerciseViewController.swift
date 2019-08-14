@@ -24,7 +24,6 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
     var totalSets : String?
     var totalReps : String?
     
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var cExerciseCH : customExerciseCompletionHandler?
@@ -41,7 +40,6 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
     }
     
     func cancelButtonTapped() {
-        
         if let ceCH = cExerciseCH {
             ceCH(nil, nil, nil)
         }
@@ -49,12 +47,10 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
         exerciseNameTextField.text = nil
         totalRepsTextField.text = nil
         totalSetsTextField.text = nil
-        
     }
 
     
     func saveButtonTapped() {
-        
         exerciseName = exerciseNameTextField.text!
         totalSets = totalSetsTextField.text!
         totalReps = totalRepsTextField.text!
@@ -66,26 +62,21 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
         exerciseNameTextField.text = nil
         totalRepsTextField.text = nil
         totalSetsTextField.text = nil
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         saveButtonTapped()
 
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         let changedString : String = (textField.text! as String) + string
         print(changedString)
 
-        
         if (exerciseNameTextField.text!.isEmpty || totalSetsTextField.text!.isEmpty || totalRepsTextField.text!.isEmpty) {
             saveButton.isEnabled = false
-        }
-        else {
+        } else {
             saveButton.isEnabled = true
         }
         
@@ -96,15 +87,11 @@ class CustomExerciseViewController: UIViewController, UITextFieldDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
+        // Pass objects via segue.destination (through navVC if needed)
         if (segue.identifier == "cancelButtonUnwind") {
             cancelButtonTapped()
         } else {
             saveButtonTapped()
         }
-        
     }
-
 }

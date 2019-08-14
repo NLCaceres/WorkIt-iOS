@@ -14,16 +14,36 @@
  */
 
 import UIKit
-import GooglePlaces
 import GoogleMaps
+import GooglePlaces
 
 /// Application delegate for the PlacePicker demo app.
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
-  func application(_ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
+  /// `UIApplicationLaunchOptionsKey` has been renamed to `UIApplication.LaunchOptionsKey`
+  /// in Swift 4.2 (Xcode 10+). This macro switch allows supporting both.
+  #if swift(>=4.2)
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?
+    ) -> Bool {
+    return commonApplication(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+  #else
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+    ) -> Bool {
+    return commonApplication(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+  #endif
+
+  private func commonApplication(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [AnyHashable: Any]?
+    ) -> Bool  {
 
     // Do a quick check to see if you've provided an API key, in a real app you wouldn't need this
     // but for the demo it means we can provide a better error message if you haven't.
@@ -35,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       fatalError(msg)
     }
 
-    // Provide the Places API with your API key.
+    // Provide the Places SDK with your API key.
     GMSPlacesClient.provideAPIKey(kPlacesAPIKey)
     // Provide the Maps API with your API key. We need to provide this as well because the Place
     // Picker displays a Google Map.
@@ -51,17 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootViewController = PickAPlaceViewController()
     let splitPaneViewController = SplitPaneViewController(rootViewController: rootViewController)
 
-    // If we're on iOS 8 or above wrap the split pane controller in a inset controller to get the
-    // map displaying behind our content on iPad devices.
-    if #available(iOS 8.0, *) {
-      let mapController = BackgroundMapViewController()
-      rootViewController.mapViewController = mapController
-      let insetController = InsetViewController(backgroundViewController: mapController,
-                                                contentViewController: splitPaneViewController)
-      window.rootViewController = insetController
-    } else {
-      window.rootViewController = splitPaneViewController
-    }
+    // Wrap the split pane controller in a inset controller to get the map displaying behind our
+    // content on iPad devices.
+    let mapController = BackgroundMapViewController()
+    rootViewController.mapViewController = mapController
+    let insetController = InsetViewController(backgroundViewController: mapController,
+                                              contentViewController: splitPaneViewController)
+    window.rootViewController = insetController
 
     // Make the window visible and allow the app to continue initialization.
     window.makeKeyAndVisible()

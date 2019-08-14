@@ -1,8 +1,9 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '12.2'
+use_frameworks!
 
 target 'WorkIt' do
-    use_frameworks!
+    pod 'GoogleSignIn'
     pod 'GooglePlaces'
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
